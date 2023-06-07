@@ -2,10 +2,14 @@ package com.full.projectOnCollections;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 class ShoppingCart {
 
 	private Map<Product, Integer> cartItems;
+
+	Admin admin = new Admin();
 
 	public ShoppingCart() {
 		cartItems = new HashMap<>();
@@ -14,7 +18,7 @@ class ShoppingCart {
 
 //to add items to cart
 	public void addItem(Product product, int quantity) {
-		int newQuantity = (int) product.getquantity() - quantity;
+		int newQuantity = product.getquantity() - quantity;
 		product.setQunatity(newQuantity);
 		if (cartItems.containsKey(product)) {
 			cartItems.put(product, quantity);
@@ -27,18 +31,21 @@ class ShoppingCart {
 //to remove items from cart
 	public void removeItem(Product product, int quantity) {
 		if (cartItems.containsKey(product)) {
-			int existingQuantity = cartItems.get(product);
-			System.out.println("exist " + existingQuantity);
 
-			if (existingQuantity >= quantity) {
-				cartItems.remove(product);
-				System.out.println(product.getName() + " removed from the cart.");
-			} else {
-				System.out.println("Enter the proper quantity");
-			}
+			product.setQunatity(product.getquantity() + quantity);
+			cartItems.remove(product);
+			System.out.println(product.getName() + " removed from the cart.");
+
 		} else {
 			System.out.println("The cart does not contain " + product.getName() + ".");
 		}
+	}
+
+//TO add quantity
+	public void changeQuantity(Product product, int oldQunatity, int newQuantity) {
+		product.setQunatity(product.getquantity() + oldQunatity - newQuantity);
+		cartItems.replace(product, newQuantity);
+		// addItem(product, newQuantity);
 	}
 
 //to display cart
@@ -46,7 +53,7 @@ class ShoppingCart {
 		if (cartItems.isEmpty()) {
 			System.out.println("The cart is empty.");
 		} else {
-
+			admin.displayProducts();
 			System.out.println("Cart Contents:");
 			for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
 				Product product = entry.getKey();
@@ -56,4 +63,5 @@ class ShoppingCart {
 			}
 		}
 	}
+
 }

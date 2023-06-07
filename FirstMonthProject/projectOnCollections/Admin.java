@@ -5,11 +5,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Admin {
-	protected static List<Product> products;
+	private static List<Product> products;
 
-	static void admin() {
+	public List<Product> getProduct() {
+		return products;
+	}
+
+	void admin() {
+
 		Scanner scanner = new Scanner(System.in);
-		int choice2;
+		int AdminChoice;
 		do {
 			System.out.println("\n1.Initialize the Products");
 			System.out.println("2.Display the available products");
@@ -17,8 +22,8 @@ public class Admin {
 			System.out.println("4.Delete the product");
 			System.out.println("5.Exit \nEnter your choice Admin");
 
-			choice2 = scanner.nextInt();
-			switch (choice2) {
+			AdminChoice = scanner.nextInt();
+			switch (AdminChoice) {
 			case 1: {
 				System.out.println("\nEnter the number of Products to be added");
 				int numOfProducts = scanner.nextInt();
@@ -84,11 +89,11 @@ public class Admin {
 				System.out.println("Invalid choice. Please try again.");
 
 			}
-		} while (choice2 != 0);
+		} while (AdminChoice != 0);
 
 	}
 
-	static void displayProducts() {
+	void displayProducts() {
 		System.out.println("\nAvailable Products:");
 		try {
 			for (int i = 0; i < products.size(); i++) {

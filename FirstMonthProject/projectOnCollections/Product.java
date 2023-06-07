@@ -3,12 +3,12 @@ package com.full.projectOnCollections;
 class Product {
 	private String name;
 	private double price;
-	private int qunatity;
+	private int quantity;
 
 	public Product(String name, double price, int quantity) {
 		this.name = name;
 		this.price = price;
-		this.qunatity = quantity;
+		this.quantity = quantity;
 	}
 
 	public String getName() {
@@ -19,11 +19,11 @@ class Product {
 		return price;
 	}
 
-	public double getquantity() {
-		return qunatity;
+	public int getquantity() {
+		return quantity;
 	}
 
 	public void setQunatity(int newQuantity) {
-		this.qunatity = newQuantity;
+		this.quantity = newQuantity;
 	}
 }

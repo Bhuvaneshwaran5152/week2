@@ -3,13 +3,15 @@ package com.full.projectOnCollections;
 import java.util.List;
 import java.util.Scanner;
 
-public class User extends Admin {
-	private static List<Product> products = Admin.products;
-	private static ShoppingCart cart = new ShoppingCart();
+public class User {
+	static Admin admin = new Admin();
+	private List<Product> products = admin.getProduct();
+	private ShoppingCart cart = new ShoppingCart();
 
-	static void user() {
-
-		int choice;
+	void user() {
+		// products = admin.getProduct();
+		// List<Product> products = admin.getProduct();
+		int userChoice;
 		int productNumber;
 		int quantity;
 		Scanner scanner = new Scanner(System.in);
@@ -18,14 +20,16 @@ public class User extends Admin {
 			System.out.println("1. Add item to cart");
 			System.out.println("2. Remove item from cart");
 			System.out.println("3. Display cart contents");
-			System.out.println("4. Exit");
+			System.out.println("4.To increase quantity");
+			System.out.println("5. Exit");
 			System.out.print("Enter your choice: ");
-			choice = scanner.nextInt();
+			userChoice = scanner.nextInt();
 
-			switch (choice) {
+			switch (userChoice) {
 			case 1: {
 				displayProducts();
-				products = Admin.products;
+				products = admin.getProduct();
+
 				if (products != null) {
 
 					System.out.print("Enter the product number: ");
@@ -53,7 +57,7 @@ public class User extends Admin {
 
 				System.out.print("Enter the product number: ");
 				productNumber = scanner.nextInt();
-				System.out.print("Enter the quantity: ");
+				System.out.println("Enter the quantity");
 				quantity = scanner.nextInt();
 				if (productNumber >= 1 && productNumber <= products.size()) {
 
@@ -69,19 +73,36 @@ public class User extends Admin {
 				cart.displayCart();
 				break;
 			}
-			case 4: {
+			case 5: {
 				System.out.println("Exiting...\n");
 				ShoppingProject.main(null);
 				break;
 			}
+			case 4: {
+				cart.displayCart();
+				System.out.print("Enter the product number: ");
+				productNumber = scanner.nextInt();
+				System.out.println("Enter the Existing Quantity");
+				int existingQuantity = scanner.nextInt();
+				System.out.println("Available Quantity -" + products.get(productNumber - 1).getquantity());
+				System.out.println("Enter the New Quantity");
+				int newQuantity = scanner.nextInt();
+				if (products.get(productNumber - 1).getquantity() + existingQuantity >= newQuantity) {
+					cart.changeQuantity(products.get(productNumber - 1), existingQuantity, newQuantity);
+				} else {
+					System.out.println("Sufficient quantity not available");
+				}
+				break;
+			}
+
 			default:
 				System.out.println("Invalid choice. Please try again.");
 			}
-		} while (choice > 4);
+		} while (userChoice > 4);
 
 	}
 
-	static void displayProducts() {
+	void displayProducts() {
 		System.out.println("\nAvailable Products:");
 		try {
 			for (int i = 0; i < products.size(); i++) {
