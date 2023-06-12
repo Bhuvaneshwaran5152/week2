@@ -8,11 +8,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.secondmonth.dao.UserDetails;
-import com.secondmonth.database.DataBase;
-import com.secondmonth.database.UsersTable;
+import com.full.secondMonthProject.dao.UserDetails;
+import com.full.secondMonthProject.database.UserDataBase;
+import com.full.secondMonthProject.database.UsersTable;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -23,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		table = DataBase.getUsersTable();
+		table = UserDataBase.getUsersTable();
 		UserDetails user = table.getUser(username);
 
 		if (user != null) {

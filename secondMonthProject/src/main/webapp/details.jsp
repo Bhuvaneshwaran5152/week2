@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Session Details</title>
-
+<%-- <jsp:include page="register.html"></jsp:include> --%>
 </head>
 <body>
 	<h2>Session Details</h2>

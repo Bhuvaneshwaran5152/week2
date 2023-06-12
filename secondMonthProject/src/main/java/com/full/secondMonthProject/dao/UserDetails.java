@@ -1,4 +1,4 @@
-package com.secondmonth.dao;
+package com.full.secondMonthProject.dao;
 
 public class UserDetails {
 	private String userName;

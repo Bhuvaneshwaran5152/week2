@@ -1,9 +1,9 @@
-package com.secondmonth.database;
+package com.full.secondMonthProject.database;
 
-public class DataBase {
+public class UserDataBase {
 
 	private static UsersTable table;
-	private DataBase()
+	private UserDataBase()
 	{
 		
 	}

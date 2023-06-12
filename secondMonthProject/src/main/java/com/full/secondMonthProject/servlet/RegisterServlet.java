@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.secondmonth.dao.UserDetails;
-import com.secondmonth.database.DataBase;
-import com.secondmonth.database.UsersTable;
+import com.full.secondMonthProject.dao.UserDetails;
+import com.full.secondMonthProject.database.UserDataBase;
+import com.full.secondMonthProject.database.UsersTable;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -19,7 +19,7 @@ public class RegisterServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		table = DataBase.getUsersTable();
+		table = UserDataBase.getUsersTable();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		int age = Integer.parseInt(request.getParameter("age"));
